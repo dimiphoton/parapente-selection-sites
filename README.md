@@ -36,8 +36,21 @@ committed.
 - **Extent**: Ardennes (Namur, Luxembourg, Liège provinces). CRS:
   Lambert 2008, EPSG:3812.
 
-Raw files stay in `data/raw/` (gitignored). See `brief/objectif.md`
+Raw files stay in `data/raw/` (gitignored). A local optional owner
+join lives in `data/local/` (also gitignored). See `brief/objectif.md`
 and `docs/decisions.md`.
+
+### Licences
+
+| Layer | Source | Licence |
+|---|---|---|
+| LiDAR DEM 2021–2022 | SPW | CC BY 4.0 |
+| WALOUS land cover | SPW | CC BY 4.0 (confirm on download) |
+| CADGIS parcel plan | SPF Finances / SPW | open cadastral plan licence (no owner names) |
+| Wind forecast | Open-Meteo | their terms (no key) |
+
+Cite the source and date in metadata when a layer is ingested. Do not
+commit owner names.
 
 ## Result
 
@@ -51,13 +64,24 @@ TBD as the pipeline lands. Skeleton:
 ```bash
 pip install -e ".[dev]"
 pytest
-python -m mon_projet.cli --help
+python -m sites_parapente.cli --crs
 ```
 
 FME Form is required for the integration workspace (`etl/workspace.fmw`).
 PostGIS and QGIS 3.x are expected locally.
 
 ## Repo structure
+
+```
+src/sites_parapente/   # package (CRS EPSG:3812 in config.py)
+data/raw/              # gitignored downloads
+data/processed/        # regenerable layers
+data/local/            # optional nominative join, gitignored
+etl/                   # FME workspace (later)
+qgis/                  # QGIS project, relative paths
+sql/                   # PostGIS schema
+webapp/                # Streamlit app (later)
+```
 
 See `ROADMAP.md` (French) for the feature sequence. `JOURNAL.md` tracks
 what landed and why.
