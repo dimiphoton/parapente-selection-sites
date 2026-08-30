@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- Occupation du sol : WALOUS 2023, masque prairie/culture/sol nu ;
+  forêt, eau et artificialisé exclus.
 - MNT : pente et aspect (Horn 1981, numpy) testés sur une tuile
   synthétique ; pas de LiDAR commité.
 - Socle : package `sites_parapente`, arborescence data/etl/qgis/sql,

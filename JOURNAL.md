@@ -1,5 +1,10 @@
 # Journal de développement
 
+## 2026-08-30 — Occupation du sol
+
+- WALOUS 2023 : codes 4, 6, 7 ouverts (sol nu, culture, prairie) ;
+  le reste exclu. CRS 3812 obligatoire. Tests sur tuile 3×3.
+
 ## 2026-08-30 — MNT et dérivés
 
 - `terrain.slope_and_aspect` : Horn 1981, pente et aspect (aval, 0 =
