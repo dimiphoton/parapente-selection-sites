@@ -31,8 +31,9 @@ committed.
 - **DEM**: Wallonia LiDAR 2021–2022 (SPW, CC BY 4.0). Slope and aspect
   (Horn 1981) live in `sites_parapente.terrain`. Put a real GeoTIFF in
   `data/raw/` locally — it is not committed.
-- **Land cover**: WALOUS (SPW) in priority; Corine Land Cover only as
-  fallback (25 ha minimum mapping unit — too coarse for a parcel).
+- **Land cover**: WALOUS 2023 (SPW, 1 m, EPSG:3812). Open for takeoff:
+  grassland (7), annual crops (6), bare soil (4). Forest, shrubs,
+  water and artificial surfaces are out. Corine is not used.
 - **Cadastre**: CADGIS parcel plan (capakey, no owner names).
 - **Wind**: Open-Meteo forecast, 3-day horizon, no API key.
 - **Extent**: Ardennes (Namur, Luxembourg, Liège provinces). CRS:

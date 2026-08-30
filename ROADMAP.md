@@ -13,8 +13,9 @@ modèle ; QGIS pour les cartes de restitution.
 - [x] **MNT et dérivés** — pente et aspect (Horn 1981, numpy) testés
   sur une tuile synthétique 1 m. Le MNT LiDAR SPW n'est pas commité
   (volume) ; lecture GeoTIFF (rasterio) à l'ingestion.
-- [ ] **Occupation du sol** — WALOUS (Corine seulement si WALOUS
-  indisponible), alignement CRS, classes retenues / exclues.
+- [x] **Occupation du sol** — WALOUS 2023 (11 classes, EPSG:3812) :
+  ouverts = prairie / culture / sol nu ; exclus = forêt, arbustes,
+  eau, artificialisé. Corine écarté. Tests sur tuile synthétique.
 - [ ] **Schéma PostGIS** — `sql/schema_postgis.sql`, index spatiaux,
   tables pente / aspect / occupation / parcelles / score.
 - [ ] **ETL FME** — `etl/workspace.fmw` versionné : intégration MNT,

@@ -1,8 +1,7 @@
 """Constantes de cadrage : CRS, périmètre, chemins de données.
 
 Les poids de l'overlay arriveront à l'étape overlay. Le MNT LiDAR
-réel se pose dans `data/raw/` (non commité) ; les dérivés se calculent
-avec `terrain.slope_and_aspect`.
+et le raster WALOUS se posent dans `data/raw/` (non commité).
 """
 
 from pathlib import Path
