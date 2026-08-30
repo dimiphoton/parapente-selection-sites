@@ -28,7 +28,9 @@ committed.
 
 ## Data
 
-- **DEM**: Wallonia LiDAR 2021–2022 (SPW, CC BY 4.0), slope and aspect.
+- **DEM**: Wallonia LiDAR 2021–2022 (SPW, CC BY 4.0). Slope and aspect
+  (Horn 1981) live in `sites_parapente.terrain`. Put a real GeoTIFF in
+  `data/raw/` locally — it is not committed.
 - **Land cover**: WALOUS (SPW) in priority; Corine Land Cover only as
   fallback (25 ha minimum mapping unit — too coarse for a parcel).
 - **Cadastre**: CADGIS parcel plan (capakey, no owner names).

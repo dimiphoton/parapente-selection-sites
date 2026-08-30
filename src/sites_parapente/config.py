@@ -1,7 +1,8 @@
 """Constantes de cadrage : CRS, périmètre, chemins de données.
 
-Les poids de l'overlay et les chemins des rasters bruts arriveront
-aux étapes MNT / occupation du sol — pas ici.
+Les poids de l'overlay arriveront à l'étape overlay. Le MNT LiDAR
+réel se pose dans `data/raw/` (non commité) ; les dérivés se calculent
+avec `terrain.slope_and_aspect`.
 """
 
 from pathlib import Path

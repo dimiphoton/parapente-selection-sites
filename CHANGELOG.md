@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- MNT : pente et aspect (Horn 1981, numpy) testés sur une tuile
+  synthétique ; pas de LiDAR commité.
 - Socle : package `sites_parapente`, arborescence data/etl/qgis/sql,
   constantes CRS EPSG:3812.
 - Cadrage : métier Géospatial, domaine Loisirs outdoor, stack Python /
