@@ -10,12 +10,13 @@ paginate: true
 <!-- Photo: pictures/presentations/photos/hero.png -->
 <!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
 
-# [Research question]
-# as one assertion
+# Which Ardennes parcels combine
+# slope, aspect and a three-day
+# wind forecast?
 
-[Role] · [Domain] · [Stack]
+Geospatial · Outdoor recreation · Python / GeoPandas / PostGIS / Streamlit / FME
 
-Wallonia · period · data grain
+Ardennes · LiDAR DEM 2021–2022 · cadastral parcel
 
 ---
 

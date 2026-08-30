@@ -10,12 +10,13 @@ paginate: true
 <!-- Photo : pictures/presentations/photos/hero.png -->
 <!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
 
-# [Question de recherche]
-# en une assertion
+# Quelles parcelles ardennaises
+# réunissent pente, exposition
+# et vent prévu à trois jours ?
 
-[Métier] · [Domaine] · [Stack]
+Géospatial · Loisirs outdoor · Python / GeoPandas / PostGIS / Streamlit / FME
 
-Wallonie · période · grain des données
+Ardenne · MNT LiDAR 2021–2022 · parcelle cadastrale
 
 ---
 

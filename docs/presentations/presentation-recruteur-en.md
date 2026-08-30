@@ -10,13 +10,13 @@ paginate: true
 <!-- Photo: pictures/presentations/photos/hero.png -->
 <!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
 
-# [Human question]
-# on two or three
-# lines?
+# Where can you take off
+# in the Ardennes, given the terrain
+# and the wind over the next three days?
 
-[Role] · [Domain] · [Stack]
+Geospatial · Outdoor recreation · Python / GeoPandas / PostGIS / Streamlit / FME
 
-Wallonia · period
+Ardennes · LiDAR DEM 2021–2022 · cadastral parcel
 
 ---
 
