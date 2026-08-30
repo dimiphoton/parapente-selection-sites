@@ -8,8 +8,8 @@ modèle ; QGIS pour les cartes de restitution.
 - [x] **Cadrage** — identité (Géospatial · Loisirs outdoor), objectif
   (webapp + parcelles + vent 3 jours), décisions (CRS 3812, WALOUS,
   propriétaires nominatifs hors dépôt public), README et covers.
-- [ ] **Socle** — package `sites_parapente`, `data/raw|processed|local`,
-  `etl/`, `qgis/`, `sql/`, CRS et licences dans le README, `init-project`.
+- [x] **Socle** — package `sites_parapente`, `data/raw|processed|local`,
+  `etl/`, `qgis/`, `sql/`, CRS et licences dans le README.
 - [ ] **MNT et dérivés** — emprise Ardenne, pente et aspect depuis le
   MNT LiDAR SPW 2021–2022 (GDAL/GeoPandas), tests sur une tuile.
 - [ ] **Occupation du sol** — WALOUS (Corine seulement si WALOUS

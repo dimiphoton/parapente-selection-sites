@@ -1,5 +1,12 @@
 # Journal de développement
 
+## 2026-08-30 — Socle
+
+- Package `sites_parapente`, dossiers `data/`, `etl/`, `qgis/`, `sql/`.
+- CRS et licences dans le README. CLI `--crs`. Tests de cadrage spatial.
+- Hook Windows : `.cursor/hooks/autopilot-stop.cmd` (py/python), log
+  local `last-stop.log`.
+
 ## 2026-08-30 — Cadrage
 
 - Identité : Géospatial · Loisirs outdoor · Python / GeoPandas /
