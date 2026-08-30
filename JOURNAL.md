@@ -1,5 +1,10 @@
 # Journal de développement
 
+## 2026-08-30 — Schéma PostGIS
+
+- `sql/schema_postgis.sql` : schema `parapente`, rasters + parcelles
+  (capakey) + score, index GIST, SRID 3812, vue publique sans nom.
+
 ## 2026-08-30 — Occupation du sol
 
 - WALOUS 2023 : codes 4, 6, 7 ouverts (sol nu, culture, prairie) ;

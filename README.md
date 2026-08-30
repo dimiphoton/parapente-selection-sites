@@ -68,6 +68,7 @@ TBD as the pipeline lands. Skeleton:
 pip install -e ".[dev]"
 pytest
 python -m sites_parapente.cli --crs
+# PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
 ```
 
 FME Form is required for the integration workspace (`etl/workspace.fmw`).
@@ -82,7 +83,7 @@ data/processed/        # regenerable layers
 data/local/            # optional nominative join, gitignored
 etl/                   # FME workspace (later)
 qgis/                  # QGIS project, relative paths
-sql/                   # PostGIS schema
+sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
 webapp/                # Streamlit app (later)
 ```
 
