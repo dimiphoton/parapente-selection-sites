@@ -16,8 +16,9 @@ modèle ; QGIS pour les cartes de restitution.
 - [x] **Occupation du sol** — WALOUS 2023 (11 classes, EPSG:3812) :
   ouverts = prairie / culture / sol nu ; exclus = forêt, arbustes,
   eau, artificialisé. Corine écarté. Tests sur tuile synthétique.
-- [ ] **Schéma PostGIS** — `sql/schema_postgis.sql`, index spatiaux,
-  tables pente / aspect / occupation / parcelles / score.
+- [x] **Schéma PostGIS** — `sql/schema_postgis.sql` : rasters pente /
+  aspect / occupation, parcelles (capakey, pas de propriétaire),
+  score, index GIST, EPSG:3812.
 - [ ] **ETL FME** — `etl/workspace.fmw` versionné : intégration MNT,
   occupation, cadastre vers PostGIS. Pause si FME n'est pas installé.
 - [ ] **Overlay pondéré** — seuils et poids justifiés (pente, aspect,
