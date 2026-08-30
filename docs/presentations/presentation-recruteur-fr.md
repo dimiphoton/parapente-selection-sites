@@ -10,13 +10,13 @@ paginate: true
 <!-- Photo : pictures/presentations/photos/hero.png -->
 <!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
 
-# [Question humaine]
-# sur deux ou trois
-# lignes ?
+# Où décoller en parapente
+# en Ardenne, selon le terrain
+# et le vent des trois prochains jours ?
 
-[Métier] · [Domaine] · [Stack]
+Géospatial · Loisirs outdoor · Python / GeoPandas / PostGIS / Streamlit / FME
 
-Wallonie · période
+Ardenne · MNT LiDAR 2021–2022 · parcelle cadastrale
 
 ---
 

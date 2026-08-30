@@ -1,15 +1,30 @@
 # Objectif du projet
 
-À compléter : quel est le but de ce projet ?
-
-- **But** : à compléter en une ou deux phrases.
-- **Origine** : d'où vient l'idée (compétition Kaggle, brief client fictif,
-  idée personnelle, reproduction d'un cas d'usage réel) ?
-- **Contraintes de départ** : délais, données imposées, technologie
-  imposée, etc. — laisser vide si aucune.
-
-Ce fichier capture le but brut, tel qu'il a été formulé au départ. Les
-versions polies destinées au portfolio vivent dans `README.md` et `docs/`.
-
-Métier, domaine et stack se remplissent dans `brief/identite.md` (source
-du bandeau README / covers / topics GitHub), pas ici.
+- **But** : produire une liste de parcelles ardennaises favorables au
+  décollage en parapente (pente, orientation, occupation du sol), les
+  identifier au cadastre, et les filtrer dans une webapp selon la
+  position de l'utilisateur, un rayon réglable, et le vent prévu sur
+  trois jours.
+- **Origine** : brief portfolio
+  `brief/01-parapente-selection-sites-wallonie.md`, amendé au cadrage
+  du 2026-08-30 (webapp géolocalisée, vent à 3 jours, parcelles
+  cadastrales). Travail solo, pas de PR.
+- **Contraintes de départ** :
+  - Périmètre v1 : Ardenne (provinces de Namur, Luxembourg, Liège),
+    pas la Wallonie entière.
+  - CRS unique : Lambert 2008, EPSG:3812.
+  - ETL d'intégration (MNT, occupation du sol, cadastre) dans **FME**
+    — pas un contournement Python. FME sera installé en cours de
+    route ; l'autopilot s'arrête à cette étape s'il manque.
+  - Calculs de pente / aspect : GDAL / GeoPandas à partir du MNT
+    LiDAR SPW 2021–2022.
+  - Occupation du sol : WALOUS (SPW) en priorité ; Corine seulement
+    en dépannage (maille 25 ha, trop grossière à la parcelle).
+  - Cadastre CADGIS : références de parcelle (capakey, commune,
+    nature, superficie). **Pas de nom de propriétaire dans le dépôt
+    ni dans GitHub Pages** — voir `docs/decisions.md`.
+  - Webapp Streamlit utilisable : géolocalisation (position actuelle
+    ou point cliqué), rayon réglable, carte des parcelles, filtre
+    vent Open-Meteo (prévision 3 jours, parcelles face au vent).
+  - QGIS pour les cartes de restitution (chemins relatifs).
+  - Aucune donnée brute volumineuse committée (`data/raw/` ignoré).
