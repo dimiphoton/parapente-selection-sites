@@ -1,5 +1,10 @@
 # Journal de développement
 
+## 2026-08-30 — MNT et dérivés
+
+- `terrain.slope_and_aspect` : Horn 1981, pente et aspect (aval, 0 =
+  nord). 4 tests sur tuile synthétique 1 m. Pas de LiDAR dans le repo.
+
 ## 2026-08-30 — Socle
 
 - Package `sites_parapente`, dossiers `data/`, `etl/`, `qgis/`, `sql/`.

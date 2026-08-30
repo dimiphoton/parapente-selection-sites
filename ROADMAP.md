@@ -10,8 +10,9 @@ modèle ; QGIS pour les cartes de restitution.
   propriétaires nominatifs hors dépôt public), README et covers.
 - [x] **Socle** — package `sites_parapente`, `data/raw|processed|local`,
   `etl/`, `qgis/`, `sql/`, CRS et licences dans le README.
-- [ ] **MNT et dérivés** — emprise Ardenne, pente et aspect depuis le
-  MNT LiDAR SPW 2021–2022 (GDAL/GeoPandas), tests sur une tuile.
+- [x] **MNT et dérivés** — pente et aspect (Horn 1981, numpy) testés
+  sur une tuile synthétique 1 m. Le MNT LiDAR SPW n'est pas commité
+  (volume) ; lecture GeoTIFF (rasterio) à l'ingestion.
 - [ ] **Occupation du sol** — WALOUS (Corine seulement si WALOUS
   indisponible), alignement CRS, classes retenues / exclues.
 - [ ] **Schéma PostGIS** — `sql/schema_postgis.sql`, index spatiaux,
