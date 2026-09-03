@@ -42,7 +42,7 @@ Sans poids justifiés, ce n'est qu'une carte jolie.
 
 Le club, plus tard la webapp, et un recruteur qui ouvre le dépôt.
 
-Le livrable de cette étape : un raster 0–1, pas encore une liste de capakey.
+Le livrable de cette étape : un raster 0–1 agrégé à la parcelle (capakey), pas une liste nominative.
 
 ---
 
@@ -66,7 +66,7 @@ Décoller, c'est convertir une course en portance sur de l'herbe. La forêt coup
 
 Pente et aspect dérivés du MNT. WALOUS déjà en Lambert 2008.
 
-On recode, on pondère, on n'agrège pas encore à la parcelle.
+On recode, on pondère, puis on agrège à la parcelle (moyenne, pas un nom).
 
 ---
 
@@ -75,11 +75,11 @@ On recode, on pondère, on n'agrège pas encore à la parcelle.
 ![bg left:46%](../../pictures/presentations/photos/physique.png)
 
 # On isole le terrain
-# du vent du jour.
+# du nom du titulaire.
 
 L'aspect climatologique (SW) pèse 30 %. Le vent Open-Meteo à 3 jours est un filtre **après**.
 
-Pas les deux dans la même somme.
+Le capakey identifie la parcelle. Le CSV nominatif reste dans `data/local/`.
 
 ---
 
@@ -87,7 +87,7 @@ Pas les deux dans la même somme.
 
 # Périmètre.
 
-On note un score de suitability au pixel, Ardenne, CRS unique.
+On note un score au pixel puis à la parcelle, Ardenne, CRS unique.
 
 On n'est pas un modèle appris, ni une carte de sites homologués, ni une table nominative.
 
@@ -138,11 +138,11 @@ Tout le reste est un veto, pas une pénalité douce.
 ![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # Robustesse
-# sur tuile synthétique.
+# sur tuile 4×4.
 
-Même forme, NaN de bord conservé, forêt pentue à 0, NE encore > 0,5.
+Prairie à l'ouest gardée (score 1). Forêt à l'est jetée (0). Owner absent de l'export.
 
-Pas de LiDAR dans le dépôt : le volume reste hors git.
+Pas de CADGIS réel dans le dépôt.
 
 ---
 
@@ -162,7 +162,7 @@ Pas de validation terrain.
 
 WALOUS à 1 m n'est pas une bande de décollage.
 
-Le SW climatologique n'est pas le vent de samedi.
+Le centre du pixel décide ; un liseré cadastral de 1 m peut basculer.
 
 ---
 
@@ -176,6 +176,6 @@ Le SW climatologique n'est pas le vent de samedi.
 
 `pytest`
 
-`python -m sites_parapente.cli --overlay`
+`python -m sites_parapente.cli --cadastre`
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-spatial-336791?logo=postgresql&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-webapp-FF4B4B?logo=streamlit&logoColor=white)

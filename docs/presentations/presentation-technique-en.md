@@ -42,7 +42,7 @@ Without justified weights it is just a pretty map.
 
 The club, later the webapp, and a recruiter who opens the repo.
 
-This step's deliverable: a 0–1 raster, not yet a capakey list.
+This step's deliverable: a 0–1 raster scored to the parcel (capakey), not a nominative list.
 
 ---
 
@@ -66,7 +66,7 @@ Takeoff turns a run into lift on grass. Forest blocks it. A flat cell has no asp
 
 Slope and aspect from the DEM. WALOUS already in Lambert 2008.
 
-We recode and weight. We do not zonal-stat to parcels yet.
+We recode, we weight, then we aggregate to the parcel (a mean, not a name).
 
 ---
 
@@ -75,11 +75,11 @@ We recode and weight. We do not zonal-stat to parcels yet.
 ![bg left:46%](../../pictures/presentations/photos/physique.png)
 
 # Terrain is isolated
-# from today's wind.
+# from the owner's name.
 
 Climatological aspect (SW) weighs 30 %. The 3-day Open-Meteo wind is a filter **afterwards**.
 
-Not both in the same sum.
+The capakey identifies the parcel. The nominative CSV stays in `data/local/`.
 
 ---
 
@@ -87,7 +87,7 @@ Not both in the same sum.
 
 # Scope.
 
-We score suitability at the pixel, Ardennes, one CRS.
+We score at the pixel then at the parcel, Ardennes, one CRS.
 
 We are not a fitted model, not a map of certified sites, and not a nominative table.
 
@@ -138,11 +138,11 @@ Everything else is a veto, not a soft penalty.
 ![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # Robustness
-# on a synthetic tile.
+# on a 4×4 tile.
 
-Same shape, edge NaNs kept, steep forest at 0, NE still above 0.5.
+Grass on the west kept (score 1). Forest on the east dropped (0). Owner absent from the export.
 
-No LiDAR in the repo: the volume stays off git.
+No real CADGIS in the repo.
 
 ---
 
@@ -162,7 +162,7 @@ No field validation.
 
 A 1 m WALOUS cell is not a takeoff strip.
 
-Climatological SW is not Saturday's wind.
+The pixel centre decides; a 1 m cadastral fringe can flip.
 
 ---
 
@@ -176,6 +176,6 @@ Climatological SW is not Saturday's wind.
 
 `pytest`
 
-`python -m sites_parapente.cli --overlay`
+`python -m sites_parapente.cli --cadastre`
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-spatial-336791?logo=postgresql&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-webapp-FF4B4B?logo=streamlit&logoColor=white)

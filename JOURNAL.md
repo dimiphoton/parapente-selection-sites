@@ -1,5 +1,11 @@
 # Journal de développement
 
+## 2026-09-03 — Cadastre
+
+- Intersection overlay × parcelles (centres de pixels, pas GeoPandas).
+  Moyenne de suitability ≥ 0,20 pour retenir. Aspect en moyenne
+  circulaire. Export public sans titulaire ; CSV `data/local/` optionnel.
+
 ## 2026-09-03 — Overlay pondéré
 
 - Score au pixel 0–1 : pente 50 % (plateau 16–28°), aspect 30 %

@@ -26,9 +26,9 @@ modèle ; QGIS pour les cartes de restitution.
   activée (même schéma PostGIS).
 - [x] **Overlay pondéré** — seuils et poids justifiés (pente 50 %,
   aspect 30 %, sol 20 %), veto WALOUS, raster 0–1, `docs/overlay.md`.
-- [ ] **Cadastre** — intersection des zones favorables avec CADGIS
-  (capakey, commune, nature, superficie). Jointure propriétaire
-  uniquement via `data/local/` (non commité).
+- [x] **Cadastre** — intersection overlay × CADGIS (moyenne ≥ 0,20),
+  capakey / commune / nature / superficie. Titulaire seulement via
+  `data/local/` (non commité).
 - [ ] **Filtre vent** — Open-Meteo (prévision 3 jours), rayon réglable
   autour d'un point, parcelles dont l'aspect est face au vent (± 45°).
 - [ ] **Webapp** — Streamlit : géoloc ou clic carte, rayon, horizon
