@@ -1,6 +1,6 @@
 -- Schéma PostGIS du projet parapente (Ardenne, Lambert 2008).
--- Source de vérité : ce fichier. FME chargera les rasters ; Python
--- n'écrit pas les parcelles à la place de FME.
+-- Source de vérité : ce fichier. L'ETL Python (intérim) ou FME plus
+-- tard chargent rasters et parcelles.
 --
 -- Pas de nom de propriétaire ici (RGPD). Identifiant public = capakey.
 

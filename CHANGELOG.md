@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- ETL Python intérim (FME reporté) : parcelles GeoJSON Ardenne sans
+  propriétaires, raster2pgsql pour les GeoTIFF.
 - Schéma PostGIS versionné (`parapente`) : rasters, parcelles,
   score, index GIST, pas de colonne propriétaire.
 - Occupation du sol : WALOUS 2023, masque prairie/culture/sol nu ;
