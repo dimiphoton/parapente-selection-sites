@@ -1,0 +1,5 @@
+# Streamlit Community Cloud + install local : pip install -r requirements.txt
+-e .
+streamlit>=1.36
+folium>=0.17
+streamlit-folium>=0.22

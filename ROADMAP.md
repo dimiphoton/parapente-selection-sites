@@ -31,7 +31,7 @@ modèle ; QGIS pour les cartes de restitution.
   `data/local/` (non commité).
 - [x] **Filtre vent** — Open-Meteo (prévision 3 jours), rayon réglable
   autour d'un point, parcelles dont l'aspect est face au vent (± 45°).
-- [ ] **Webapp** — Streamlit : géoloc ou clic carte, rayon, horizon
-  vent, liste et carte des parcelles. Rien de nominatif en public.
+- [x] **Webapp** — Streamlit : clic sur la carte, jour J+0…J+2, rayon
+  30 km, liste et marqueurs. Jeu démo WGS84, rien de nominatif.
 - [ ] **Restitution QGIS** — projet `.qgz` (chemins relatifs), export
   CSV/GeoJSON des parcelles, présentations à jour.

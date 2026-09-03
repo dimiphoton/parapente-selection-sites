@@ -129,11 +129,11 @@ Open-Meteo, sans clé. Le versant vient du LiDAR. La parcelle a un capakey, pas 
 
 # Lundi.
 
-**Pilote** — choisir un jour, un rayon, garder les parcelles face au vent.
+**Pilote** — cliquer un point, choisir un jour, lire les parcelles face au vent.
 
 **Club** — travailler au capakey, jamais au nom du titulaire.
 
-La carte cliquable arrive avec la webapp.
+La carte est dans l'app Streamlit (`streamlit run webapp/app.py`).
 
 ---
 
@@ -145,4 +145,4 @@ La carte cliquable arrive avec la webapp.
 
 [Code source](https://github.com/dimiphoton/parapente-selection-sites)
 
-`python -m sites_parapente.cli --wind`
+`streamlit run webapp/app.py`

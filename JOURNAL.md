@@ -1,5 +1,11 @@
 # Journal de développement
 
+## 2026-09-03 — Webapp Streamlit
+
+- Clic sur la carte + jour J+0…J+2 → parcelles démo dans 30 km face
+  au vent. Folium dans Streamlit, JSON WGS84 fictif, pas de GPS ni
+  de PostGIS. Capakey pour le club, jamais un titulaire.
+
 ## 2026-09-03 — Filtre vent
 
 - Open-Meteo 3 jours (vent 10 m, dominant journalier), urllib sans clé.

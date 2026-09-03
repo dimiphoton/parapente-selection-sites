@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- Webapp Streamlit : clic sur la carte, jour J+0…J+2, parcelles démo
+  face au vent dans 30 km. `streamlit run webapp/app.py`.
 - Filtre vent : prévision Open-Meteo 3 jours, rayon 30 km (réglable),
   parcelles face au vent ± 45°. `docs/wind.md`. Tests sans réseau.
 - Cadastre : stats zonales à la parcelle (moyenne suitability ≥ 0,20),

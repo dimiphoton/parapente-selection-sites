@@ -73,7 +73,10 @@ The pixel suitability raster is implemented and tested on synthetic
 tiles. Ranked parcels: keep if mean suitability ≥ 0.20. Public export
 is capakey + score, never an owner name (`docs/cadastre.md`). The
 3-day wind filter is in `sites_parapente.wind` (Open-Meteo, ± 45°,
-adjustable radius). The map UI is the next Streamlit step.
+adjustable radius). The Streamlit app (`webapp/app.py`) takes a
+clicked point and a day (J+0…J+2) and lists demo parcels that face
+the forecast wind within 30 km. Capakeys in the demo file are
+fictional.
 
 ## Reproduce
 
@@ -90,6 +93,8 @@ python -m sites_parapente.cli --forecast 50.22 5.34
 python -m sites_parapente.cli --etl-parcels data/processed/cadastre.geojson
 python -m sites_parapente.cli --etl-raster pente.tif parapente.pente
 # PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
+pip install -e ".[webapp]"
+streamlit run webapp/app.py
 ```
 
 FME Form is **deferred** (licence). Python ETL is the current path.
@@ -108,7 +113,7 @@ sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
 docs/overlay.md        # weights and thresholds (FR)
 docs/cadastre.md       # parcel intersection, no owner names (FR)
 docs/wind.md           # Open-Meteo 3-day filter, ± 45° (FR)
-webapp/                # Streamlit app (later)
+webapp/                # Streamlit: click a point, pick a day
 ```
 
 See `ROADMAP.md` (French) for the feature sequence. `JOURNAL.md` tracks
