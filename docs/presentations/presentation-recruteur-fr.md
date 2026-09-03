@@ -79,7 +79,7 @@ Pas un simulateur de vol, ni une autorisation de décoller.
 
 Pas les noms des propriétaires.
 
-**Un score de terrain en Ardenne, à la parcelle ensuite.**
+**Un score de terrain en Ardenne, à la parcelle.**
 
 ---
 
@@ -87,10 +87,10 @@ Pas les noms des propriétaires.
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# Forêt pentue : zéro.
-# Prairie plate : zéro.
+# On nomme la parcelle.
+# Pas la personne.
 
-Les trois conditions ensemble, ou rien.
+Capakey, commune, nature, score. Le propriétaire reste hors dépôt.
 
 ---
 
@@ -117,7 +117,7 @@ Parmi ce qui reste, la pente pèse la moitié. L'orientation, un tiers. Le type 
 # Ce n'est pas
 # un chiffre tiré au sort.
 
-Seuils écrits, veto forêt, versant nord-est gardé pour les jours d'est.
+Seuils écrits, veto forêt, parcelle identifiée par son capakey.
 
 Le vent des trois jours viendra **après**, pas dans ce score.
 
@@ -129,9 +129,9 @@ Le vent des trois jours viendra **après**, pas dans ce score.
 
 # Lundi.
 
-**Pilote** — garder les versants herbeux entre 16° et 28°.
+**Pilote** — garder les parcelles herbeuses (score ≥ 0,20).
 
-**Club** — traiter le score comme un filtre, pas comme un feu vert légal.
+**Club** — travailler au capakey, jamais au nom du titulaire.
 
 Le vent du jour n'est pas encore dans la carte.
 
@@ -145,4 +145,4 @@ Le vent du jour n'est pas encore dans la carte.
 
 [Code source](https://github.com/dimiphoton/parapente-selection-sites)
 
-Webapp géolocalisée : prochaine étape après le cadastre.
+Webapp géolocalisée : prochaine étape, avec le vent à 3 jours.

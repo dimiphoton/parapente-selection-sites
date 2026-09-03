@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- Cadastre : stats zonales à la parcelle (moyenne suitability ≥ 0,20),
+  export capakey sans propriétaire. Tests tuile 4×4. `docs/cadastre.md`.
 - Overlay pondéré : score 0–1 au pixel (pente 50 %, aspect 30 %,
   occupation 20 %), veto WALOUS, seuils documentés dans
   `docs/overlay.md`. Tests sur tuile synthétique.

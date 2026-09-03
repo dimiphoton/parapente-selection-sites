@@ -8,7 +8,7 @@ from sites_parapente.config import CRS_EPSG, CRS_NAME, EXTENT_NAME, PROVINCES
 
 
 def main() -> None:
-    """Affiche le cadrage, le modèle d'overlay, ou lance l'ETL."""
+    """Affiche le cadrage, l'overlay, le cadastre, ou lance l'ETL."""
     parser = argparse.ArgumentParser(
         description="Sites de décollage parapente en Ardenne."
     )
@@ -21,6 +21,11 @@ def main() -> None:
         "--overlay",
         action="store_true",
         help="Affiche les poids et seuils de l'overlay pondéré.",
+    )
+    parser.add_argument(
+        "--cadastre",
+        action="store_true",
+        help="Affiche la règle d'intersection overlay × parcelles.",
     )
     parser.add_argument(
         "--etl-parcels",
@@ -42,6 +47,11 @@ def main() -> None:
         from sites_parapente.overlay import overlay_summary
 
         print(overlay_summary())
+        return
+    if args.cadastre:
+        from sites_parapente.cadastre import cadastre_summary
+
+        print(cadastre_summary())
         return
     if args.etl_parcels:
         from pathlib import Path

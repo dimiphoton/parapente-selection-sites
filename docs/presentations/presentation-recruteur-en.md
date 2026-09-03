@@ -79,7 +79,7 @@ Not a flight simulator, and not a permit to take off.
 
 Not the names of landowners.
 
-**A terrain score in the Ardennes, then a parcel list.**
+**A terrain score in the Ardennes, at parcel grain.**
 
 ---
 
@@ -87,10 +87,10 @@ Not the names of landowners.
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# Steep forest: zero.
-# Flat meadow: zero.
+# We name the parcel.
+# Not the person.
 
-All three conditions, or none.
+Capakey, municipality, land nature, score. The owner stays off the repo.
 
 ---
 
@@ -117,7 +117,7 @@ Of what remains, slope takes half the weight. Aspect takes a third. Open-soil ty
 # This is not
 # a number pulled from a hat.
 
-Written thresholds, a forest veto, north-east slopes kept for easterly days.
+Written thresholds, a forest veto, the parcel identified by capakey.
 
 The three-day wind comes **later**, not inside this score.
 
@@ -129,9 +129,9 @@ The three-day wind comes **later**, not inside this score.
 
 # Monday.
 
-**Pilot** — keep grassy slopes between 16° and 28°.
+**Pilot** — keep grassy parcels (score ≥ 0.20).
 
-**Club** — treat the score as a filter, not a legal green light.
+**Club** — work with the capakey, never the owner's name.
 
 Today's wind is not on the map yet.
 
@@ -145,4 +145,4 @@ Today's wind is not on the map yet.
 
 [Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-Location-aware webapp: after the cadastre join.
+Location-aware webapp: next, with the 3-day wind.

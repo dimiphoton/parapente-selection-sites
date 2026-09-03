@@ -26,7 +26,8 @@ cover`, with a hard veto on forest / water / artificial surfaces.
 Slope is usable between 10° and 42° (plateau 16–28°). Aspect prefers
 south-west (prevailing Belgian wind) but does not zero-out the north-east.
 Daily wind is a later filter, not a fourth weight. Details:
-[`docs/overlay.md`](docs/overlay.md).
+[`docs/overlay.md`](docs/overlay.md). Parcel join:
+[`docs/cadastre.md`](docs/cadastre.md).
 
 Owner names are **not** published. The public table identifies the
 parcel (capakey, municipality, land nature, area, score). A local
@@ -65,8 +66,9 @@ commit owner names.
 ## Result
 
 The pixel suitability raster is implemented and tested on synthetic
-tiles. Ranked cadastral parcels and the wind-aware map come after the
-cadastre intersection and the Streamlit app.
+tiles. Ranked parcels: keep if mean suitability ≥ 0.20. Public export
+is capakey + score, never an owner name (`docs/cadastre.md`). The
+wind-aware map comes with the Streamlit app.
 
 ## Reproduce
 
@@ -77,6 +79,7 @@ pip install -e ".[dev]"
 pytest
 python -m sites_parapente.cli --crs
 python -m sites_parapente.cli --overlay
+python -m sites_parapente.cli --cadastre
 python -m sites_parapente.cli --etl-parcels data/processed/cadastre.geojson
 python -m sites_parapente.cli --etl-raster pente.tif parapente.pente
 # PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
@@ -96,6 +99,7 @@ etl/                   # FME workspace later ; Python ETL is in src/
 qgis/                  # QGIS project, relative paths
 sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
 docs/overlay.md        # weights and thresholds (FR)
+docs/cadastre.md       # parcel intersection, no owner names (FR)
 webapp/                # Streamlit app (later)
 ```
 

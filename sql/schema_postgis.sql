@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS parapente.score (
 );
 
 COMMENT ON TABLE parapente.score IS
-  'Zonal stats + score de suitability. geom recopié pour la carte (pas de jointure propriétaire).';
+  'Zonal stats (médiane pente, moyenne circulaire d''aspect) + suitability moyenne. Pas de titulaire.';
 
 CREATE INDEX IF NOT EXISTS score_geom_gist
     ON parapente.score USING GIST (geom);

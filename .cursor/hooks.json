@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "stop": [
+      {
+        "command": ".cursor/hooks/autopilot-stop.cmd",
+        "loop_limit": 15,
+        "timeout": 15
+      }
+    ]
+  }
+}
