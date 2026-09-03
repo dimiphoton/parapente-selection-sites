@@ -42,7 +42,7 @@ Forest, a meadow that is too flat, or a slope with its back to the wind: the dri
 
 The club wants a grassy takeoff. The independent pilot wants a slope that faces the wind. The municipality wants parcels you can name.
 
-**The call: which parcels are worth the trip.**
+**The call: which parcels are worth the trip this weekend.**
 
 ---
 
@@ -50,11 +50,10 @@ The club wants a grassy takeoff. The independent pilot wants a slope that faces 
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# To leave the ground
-# you need a grass slope
-# facing the wind.
+# You take off into the wind,
+# on a slope that faces it.
 
-Too flat, you run and never lift. Too many trees, the wing has no room. Water and concrete are out.
+Wind from the west means a west-facing hillside. Back to the flow, the wing does not climb.
 
 ---
 
@@ -62,12 +61,12 @@ Too flat, you run and never lift. Too many trees, the wing has no room. Water an
 
 ![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# We read a
-# one-metre pixel.
+# Two readings,
+# not a blend.
 
-LiDAR gives slope and aspect. WALOUS says grassland, crops, or forest.
+LiDAR and WALOUS score the terrain once. Open-Meteo says where the wind comes from, for three days.
 
-That becomes a score from 0 to 1 — not an average of opinions.
+Weather does not go into the slope score.
 
 ---
 
@@ -75,17 +74,17 @@ That becomes a score from 0 to 1 — not an average of opinions.
 
 # This project is not.
 
-Not a flight simulator, and not a permit to take off.
+Not a flight briefing, and not a permit to take off.
 
 Not the names of landowners.
 
-**A terrain score in the Ardennes, at parcel grain.**
+**A filter: grassy parcel, inside a radius, facing the forecast wind.**
 
 ---
 
-<!-- _class: full -->
+<!-- _class: split -->
 
-![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
+![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # We name the parcel.
 # Not the person.
@@ -94,19 +93,22 @@ Capakey, municipality, land nature, score. The owner stays off the repo.
 
 ---
 
-<!-- _class: chart -->
+<!-- _class: full -->
 
-Usable slope lives in a window: too flat or too steep, the score drops.
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-![w:980](../../pictures/presentations/score-pente-en.png)
+# Facing the wind,
+# within forty-five degrees.
+
+Three days of forecast. A thirty-kilometre radius, adjustable. No wider: the back of the hill is out.
 
 ---
 
 <!-- _class: chart -->
 
-Of what remains, slope takes half the weight. Aspect takes a third. Open-soil type takes the rest.
+Usable slope lives in a window: too flat or too steep, the score drops — before anyone looks at the wind.
 
-![w:920](../../pictures/presentations/poids-overlay-en.png)
+![w:980](../../pictures/presentations/score-pente-en.png)
 
 ---
 
@@ -115,11 +117,9 @@ Of what remains, slope takes half the weight. Aspect takes a third. Open-soil ty
 ![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # This is not
-# a number pulled from a hat.
+# a made-up arrow.
 
-Written thresholds, a forest veto, the parcel identified by capakey.
-
-The three-day wind comes **later**, not inside this score.
+Open-Meteo, no API key. Aspect comes from LiDAR. The parcel has a capakey, not a family name.
 
 ---
 
@@ -129,11 +129,11 @@ The three-day wind comes **later**, not inside this score.
 
 # Monday.
 
-**Pilot** — keep grassy parcels (score ≥ 0.20).
+**Pilot** — pick a day and a radius, keep parcels that face the wind.
 
 **Club** — work with the capakey, never the owner's name.
 
-Today's wind is not on the map yet.
+The clickable map comes with the webapp.
 
 ---
 
@@ -145,4 +145,4 @@ Today's wind is not on the map yet.
 
 [Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-Location-aware webapp: next, with the 3-day wind.
+`python -m sites_parapente.cli --wind`

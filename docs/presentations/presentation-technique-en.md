@@ -9,13 +9,13 @@ paginate: true
 
 ![bg brightness:0.40](../../pictures/presentations/photos/hero.png)
 
-# How do we recode slope, aspect
-# and WALOUS into a 0–1 score
-# without fitting a model?
+# How do we keep parcels that face
+# the 3-day forecast wind without
+# putting weather inside the overlay?
 
 Geospatial · Outdoor recreation · Python / GeoPandas / PostGIS / Streamlit / FME
 
-Ardennes · LiDAR DEM 2021–2022 · cadastral parcel
+Ardennes · Open-Meteo 10 m · ± 45°
 
 ---
 
@@ -23,13 +23,13 @@ Ardennes · LiDAR DEM 2021–2022 · cadastral parcel
 
 ![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# Weighted overlay is
-# the founding GIS
-# exercise.
+# The terrain score
+# says which slopes exist.
+# Not which day they work.
 
-Without justified weights it is just a pretty map.
+A SW-biased overlay with no daily filter would leave parcels with their back to an easterly.
 
-**Here a rejected pixel must be explainable in one sentence.**
+**The stake: one weekend, one radius, one azimuth.**
 
 ---
 
@@ -38,11 +38,11 @@ Without justified weights it is just a pretty map.
 ![bg left:46%](../../pictures/presentations/photos/hero.png)
 
 # Who consumes
-# the raster.
+# the filter.
 
-The club, later the webapp, and a recruiter who opens the repo.
+The pilot (where to go on Saturday). Later the Streamlit app. The club, by capakey.
 
-This step's deliverable: a 0–1 raster scored to the parcel (capakey), not a nominative list.
+Open-Meteo needs no key. Nothing nominative leaves the pipe.
 
 ---
 
@@ -50,10 +50,10 @@ This step's deliverable: a 0–1 raster scored to the parcel (capakey), not a no
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# Horn gives slope.
-# Downslope gives aspect.
+# Weather: where the wind comes from.
+# Aspect: where the slope goes down.
 
-Takeoff turns a run into lift on grass. Forest blocks it. A flat cell has no aspect.
+Same 0° = north. Facing the wind ⇔ aspect ≈ meteorological direction. Takeoff is into the flow.
 
 ---
 
@@ -61,12 +61,12 @@ Takeoff turns a run into lift on grass. Forest blocks it. A flat cell has no asp
 
 ![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# Three grids,
-# one metre, EPSG:3812.
+# One GET, two grains,
+# one radius.
 
-Slope and aspect from the DEM. WALOUS already in Lambert 2008.
+Open-Meteo: hourly + daily dominant, `forecast_days=3`, 10 m wind, Brussels timezone.
 
-We recode, we weight, then we aggregate to the parcel (a mean, not a name).
+Distance: WGS84 haversine. No pyproj. `ST_Transform` waits for PostGIS / the webapp.
 
 ---
 
@@ -74,12 +74,25 @@ We recode, we weight, then we aggregate to the parcel (a mean, not a name).
 
 ![bg left:46%](../../pictures/presentations/photos/physique.png)
 
-# Terrain is isolated
-# from the owner's name.
+# Daily wind is isolated
+# from the climatological weight.
 
-Climatological aspect (SW) weighs 30 %. The 3-day Open-Meteo wind is a filter **afterwards**.
+The overlay still gives aspect 30 % around SW (how often a hillside “works”).
 
-The capakey identifies the parcel. The nominative CSV stays in `data/local/`.
+The filter cuts **this** flow, ± 45°, circular delta (350° / 10° = 20°).
+
+---
+
+<!-- _class: split -->
+
+![bg left:46%](../../pictures/presentations/photos/hero.png)
+
+# Three predicates,
+# not a new score.
+
+Inside the radius. Facing the wind. Already kept at cadastre (suitability ≥ 0.20).
+
+Owner fields are stripped again, even if they leaked into the input JSON.
 
 ---
 
@@ -87,15 +100,28 @@ The capakey identifies the parcel. The nominative CSV stays in `data/local/`.
 
 # Scope.
 
-We score at the pixel then at the parcel, Ardennes, one CRS.
+Three days, one point, an adjustable radius (default 30 km), direction only.
 
-We are not a fitted model, not a map of certified sites, and not a nominative table.
+Not a briefing (no QNH, no thermals), not a speed threshold, not a nominative table.
+
+---
+
+<!-- _class: split -->
+
+![bg left:46%](../../pictures/presentations/photos/physique.png)
+
+# Ten metres,
+# not eighty.
+
+Takeoff is at wing height. 80 m wind describes the layer above.
+
+No speed cutoff: out of scope, a pilot call.
 
 ---
 
 <!-- _class: chart -->
 
-Usable slope is a window: 0 outside 10–42°, a plateau at 1 between 16° and 28°.
+Terrain is still a slope window: 0 outside 10–42°, a plateau at 1 between 16° and 28°. Wind stays out of that score.
 
 ![w:920](../../pictures/presentations/score-pente-en.png)
 
@@ -105,16 +131,16 @@ Usable slope is a window: 0 outside 10–42°, a plateau at 1 between 16° and 2
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# 0.50 slope + 0.30 aspect
-# + 0.20 land cover. Else veto.
+# ± 45°, inclusive.
+# Flat (NaN): out.
 
-Forest, water, artificial ground, or slope outside the window: the pixel is 0.
+Exactly 45°: kept. 46°: dropped. A NE hillside survives the overlay and leaves as soon as the flow is westerly.
 
 ---
 
 <!-- _class: chart -->
 
-South-west aspect scores 1. North-east stays at 0.25 — easterly days do happen.
+South-west climatological aspect scores 1. North-east stays at 0.25 — the daily filter takes over.
 
 ![w:920](../../pictures/presentations/score-aspect-en.png)
 
@@ -124,12 +150,12 @@ South-west aspect scores 1. North-east stays at 0.25 — easterly days do happen
 
 ![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# WALOUS is not
-# a weight like the others.
+# Robustness
+# with no socket.
 
-Grassland 1, bare soil 0.80, crops 0.55.
+72 hours and 3 dominants in a JSON fixture. Injected `urlopen`. 0°/360° wrap tested.
 
-Everything else is a veto, not a soft penalty.
+The live GET is not in pytest.
 
 ---
 
@@ -137,20 +163,12 @@ Everything else is a veto, not a soft penalty.
 
 ![bg left:40%](../../pictures/presentations/photos/hero.png)
 
-# Robustness
-# on a 4×4 tile.
+# Why not
+# climatology alone.
 
-Grass on the west kept (score 1). Forest on the east dropped (0). Owner absent from the export.
+A yearly azimuth would hide the easterly day. Instant wind with no horizon does not say “Saturday”.
 
-No real CADGIS in the repo.
-
----
-
-<!-- _class: chart -->
-
-Why not a classifier? There is no labelled takeoff sample. An overlay can be read and challenged.
-
-![w:880](../../pictures/presentations/poids-overlay-en.png)
+Three days, one dominant per day: enough to pick the slot.
 
 ---
 
@@ -158,11 +176,11 @@ Why not a classifier? There is no labelled takeoff sample. An overlay can be rea
 
 # Where it breaks.
 
-No field validation.
+A daily dominant smooths a regime flip.
 
-A 1 m WALOUS cell is not a takeoff strip.
+Spherical haversine, not ellipsoid.
 
-The pixel centre decides; a 1 m cadastral fringe can flip.
+Open-Meteo is not a TAF.
 
 ---
 
@@ -174,8 +192,8 @@ The pixel centre decides; a 1 m cadastral fringe can flip.
 
 [Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-`pytest`
+`pytest tests/test_wind.py`
 
-`python -m sites_parapente.cli --cadastre`
+`python -m sites_parapente.cli --forecast 50.22 5.34`
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-spatial-336791?logo=postgresql&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-webapp-FF4B4B?logo=streamlit&logoColor=white)

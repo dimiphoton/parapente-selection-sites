@@ -7,7 +7,8 @@ labellisés. Les poids sont des choix d'expertise, documentés ici.
 
 Le vent prévu (Open-Meteo, 3 jours) **n'entre pas** dans ce score. C'est
 un filtre ultérieur : on gardera les parcelles dont l'aspect est face au
-vent du jour (± 45°). Mélanger les deux recompterait l'orientation.
+vent du jour (± 45°). Détail : `docs/wind.md`. Mélanger les deux
+recompterait l'orientation.
 
 Implémentation : `sites_parapente.overlay.weighted_overlay`.
 

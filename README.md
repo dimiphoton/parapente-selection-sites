@@ -25,9 +25,11 @@ Terrain score (0–1) is `0.50 × slope + 0.30 × aspect + 0.20 × land
 cover`, with a hard veto on forest / water / artificial surfaces.
 Slope is usable between 10° and 42° (plateau 16–28°). Aspect prefers
 south-west (prevailing Belgian wind) but does not zero-out the north-east.
-Daily wind is a later filter, not a fourth weight. Details:
-[`docs/overlay.md`](docs/overlay.md). Parcel join:
-[`docs/cadastre.md`](docs/cadastre.md).
+Daily wind is a **filter after** that score, not a fourth weight.
+A parcel is kept if it sits inside an adjustable radius (default
+30 km, haversine on WGS84) and its circular-mean aspect faces the
+forecast wind within ± 45°. Details: [`docs/overlay.md`](docs/overlay.md),
+[`docs/cadastre.md`](docs/cadastre.md), [`docs/wind.md`](docs/wind.md).
 
 Owner names are **not** published. The public table identifies the
 parcel (capakey, municipality, land nature, area, score). A local
@@ -43,7 +45,9 @@ committed.
   grassland (7), annual crops (6), bare soil (4). Forest, shrubs,
   water and artificial surfaces are out. Corine is not used.
 - **Cadastre**: CADGIS parcel plan (capakey, no owner names).
-- **Wind**: Open-Meteo forecast, 3-day horizon, no API key.
+- **Wind**: Open-Meteo forecast, 3-day horizon, 10 m wind, no API key.
+  Daily dominant direction filters parcels; hourly series is kept for
+  the webapp. See [`docs/wind.md`](docs/wind.md).
 - **Extent**: Ardennes (Namur, Luxembourg, Liège provinces). CRS:
   Lambert 2008, EPSG:3812.
 
@@ -68,7 +72,8 @@ commit owner names.
 The pixel suitability raster is implemented and tested on synthetic
 tiles. Ranked parcels: keep if mean suitability ≥ 0.20. Public export
 is capakey + score, never an owner name (`docs/cadastre.md`). The
-wind-aware map comes with the Streamlit app.
+3-day wind filter is in `sites_parapente.wind` (Open-Meteo, ± 45°,
+adjustable radius). The map UI is the next Streamlit step.
 
 ## Reproduce
 
@@ -80,6 +85,8 @@ pytest
 python -m sites_parapente.cli --crs
 python -m sites_parapente.cli --overlay
 python -m sites_parapente.cli --cadastre
+python -m sites_parapente.cli --wind
+python -m sites_parapente.cli --forecast 50.22 5.34
 python -m sites_parapente.cli --etl-parcels data/processed/cadastre.geojson
 python -m sites_parapente.cli --etl-raster pente.tif parapente.pente
 # PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
@@ -100,6 +107,7 @@ qgis/                  # QGIS project, relative paths
 sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
 docs/overlay.md        # weights and thresholds (FR)
 docs/cadastre.md       # parcel intersection, no owner names (FR)
+docs/wind.md           # Open-Meteo 3-day filter, ± 45° (FR)
 webapp/                # Streamlit app (later)
 ```
 

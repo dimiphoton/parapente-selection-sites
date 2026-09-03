@@ -2,6 +2,8 @@
 
 ## [Non publié]
 
+- Filtre vent : prévision Open-Meteo 3 jours, rayon 30 km (réglable),
+  parcelles face au vent ± 45°. `docs/wind.md`. Tests sans réseau.
 - Cadastre : stats zonales à la parcelle (moyenne suitability ≥ 0,20),
   export capakey sans propriétaire. Tests tuile 4×4. `docs/cadastre.md`.
 - Overlay pondéré : score 0–1 au pixel (pente 50 %, aspect 30 %,

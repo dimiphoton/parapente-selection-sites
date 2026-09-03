@@ -29,7 +29,7 @@ modèle ; QGIS pour les cartes de restitution.
 - [x] **Cadastre** — intersection overlay × CADGIS (moyenne ≥ 0,20),
   capakey / commune / nature / superficie. Titulaire seulement via
   `data/local/` (non commité).
-- [ ] **Filtre vent** — Open-Meteo (prévision 3 jours), rayon réglable
+- [x] **Filtre vent** — Open-Meteo (prévision 3 jours), rayon réglable
   autour d'un point, parcelles dont l'aspect est face au vent (± 45°).
 - [ ] **Webapp** — Streamlit : géoloc ou clic carte, rayon, horizon
   vent, liste et carte des parcelles. Rien de nominatif en public.
