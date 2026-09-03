@@ -1,4 +1,4 @@
-"""Point d'entrée en ligne de commande : cadrage spatial et ETL."""
+"""Point d'entrée en ligne de commande : cadrage, overlay, ETL."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from sites_parapente.config import CRS_EPSG, CRS_NAME, EXTENT_NAME, PROVINCES
 
 
 def main() -> None:
-    """Affiche le cadrage spatial ou l'aide du CLI."""
+    """Affiche le cadrage, le modèle d'overlay, ou lance l'ETL."""
     parser = argparse.ArgumentParser(
         description="Sites de décollage parapente en Ardenne."
     )
@@ -16,6 +16,11 @@ def main() -> None:
         "--crs",
         action="store_true",
         help="Affiche le CRS et le périmètre du projet.",
+    )
+    parser.add_argument(
+        "--overlay",
+        action="store_true",
+        help="Affiche les poids et seuils de l'overlay pondéré.",
     )
     parser.add_argument(
         "--etl-parcels",
@@ -32,6 +37,11 @@ def main() -> None:
     if args.crs:
         provinces = ", ".join(PROVINCES)
         print(f"EPSG:{CRS_EPSG} ({CRS_NAME}) - {EXTENT_NAME} ({provinces})")
+        return
+    if args.overlay:
+        from sites_parapente.overlay import overlay_summary
+
+        print(overlay_summary())
         return
     if args.etl_parcels:
         from pathlib import Path

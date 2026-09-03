@@ -21,6 +21,13 @@ stores it in PostGIS, and serves a small Streamlit app: current
 position (or a clicked point), adjustable radius, Open-Meteo 3-day
 wind, parcels whose aspect faces that wind.
 
+Terrain score (0–1) is `0.50 × slope + 0.30 × aspect + 0.20 × land
+cover`, with a hard veto on forest / water / artificial surfaces.
+Slope is usable between 10° and 42° (plateau 16–28°). Aspect prefers
+south-west (prevailing Belgian wind) but does not zero-out the north-east.
+Daily wind is a later filter, not a fourth weight. Details:
+[`docs/overlay.md`](docs/overlay.md).
+
 Owner names are **not** published. The public table identifies the
 parcel (capakey, municipality, land nature, area, score). A local
 optional file can join a lawful cadastral extract; it is never
@@ -57,8 +64,9 @@ commit owner names.
 
 ## Result
 
-TBD — first ranked parcel list and a usable map, after the overlay
-and the wind filter.
+The pixel suitability raster is implemented and tested on synthetic
+tiles. Ranked cadastral parcels and the wind-aware map come after the
+cadastre intersection and the Streamlit app.
 
 ## Reproduce
 
@@ -68,6 +76,7 @@ TBD as the pipeline lands. Skeleton:
 pip install -e ".[dev]"
 pytest
 python -m sites_parapente.cli --crs
+python -m sites_parapente.cli --overlay
 python -m sites_parapente.cli --etl-parcels data/processed/cadastre.geojson
 python -m sites_parapente.cli --etl-raster pente.tif parapente.pente
 # PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
@@ -86,6 +95,7 @@ data/local/            # optional nominative join, gitignored
 etl/                   # FME workspace later ; Python ETL is in src/
 qgis/                  # QGIS project, relative paths
 sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
+docs/overlay.md        # weights and thresholds (FR)
 webapp/                # Streamlit app (later)
 ```
 

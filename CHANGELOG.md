@@ -2,6 +2,9 @@
 
 ## [Non publié]
 
+- Overlay pondéré : score 0–1 au pixel (pente 50 %, aspect 30 %,
+  occupation 20 %), veto WALOUS, seuils documentés dans
+  `docs/overlay.md`. Tests sur tuile synthétique.
 - ETL Python intérim (FME reporté) : parcelles GeoJSON Ardenne sans
   propriétaires, raster2pgsql pour les GeoTIFF.
 - Schéma PostGIS versionné (`parapente`) : rasters, parcelles,

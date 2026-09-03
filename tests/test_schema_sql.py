@@ -26,11 +26,18 @@ def test_schema_uses_lambert_2008_and_postgis() -> None:
 
 
 def test_schema_has_required_tables_and_gist_indexes() -> None:
-    """Pente, aspect, occupation, parcelle, score + index GIST."""
+    """Pente, aspect, occupation, suitability, parcelle, score + GIST."""
     text = _sql()
-    for name in ("pente", "aspect", "occupation", "parcelle", "score"):
+    for name in (
+        "pente",
+        "aspect",
+        "occupation",
+        "suitability",
+        "parcelle",
+        "score",
+    ):
         assert f"parapente.{name}" in text
-    assert text.count("USING GIST") >= 5
+    assert text.count("USING GIST") >= 6
 
 
 def test_schema_has_capakey_and_no_owner_column() -> None:

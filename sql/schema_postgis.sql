@@ -29,7 +29,7 @@ COMMENT ON TABLE parapente.layer_meta IS
   'Métadonnées minimales des couches produites (pas de PII).';
 
 -- ---------------------------------------------------------------------------
--- Rasters d'entrée / dérivés (tuiles). FME alimente rid + rast.
+-- Rasters d'entrée / dérivés (tuiles). Overlay Python, puis raster2pgsql.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS parapente.pente (
     rid  integer PRIMARY KEY,
@@ -46,12 +46,19 @@ CREATE TABLE IF NOT EXISTS parapente.occupation (
     rast raster
 );
 
+CREATE TABLE IF NOT EXISTS parapente.suitability (
+    rid  integer PRIMARY KEY,
+    rast raster
+);
+
 COMMENT ON TABLE parapente.pente IS
   'Pente en degrés (Horn 1981), raster tuilé, SRID 3812.';
 COMMENT ON TABLE parapente.aspect IS
   'Aspect en degrés depuis le nord (aval), raster tuilé, SRID 3812.';
 COMMENT ON TABLE parapente.occupation IS
   'Codes WALOUS 2023 (1 m), raster tuilé, SRID 3812.';
+COMMENT ON TABLE parapente.suitability IS
+  'Overlay pondéré 0–1 (pente 50 %, aspect 30 %, sol 20 %), SRID 3812.';
 
 CREATE INDEX IF NOT EXISTS pente_rast_gist
     ON parapente.pente USING GIST (ST_ConvexHull(rast));
@@ -59,6 +66,8 @@ CREATE INDEX IF NOT EXISTS aspect_rast_gist
     ON parapente.aspect USING GIST (ST_ConvexHull(rast));
 CREATE INDEX IF NOT EXISTS occupation_rast_gist
     ON parapente.occupation USING GIST (ST_ConvexHull(rast));
+CREATE INDEX IF NOT EXISTS suitability_rast_gist
+    ON parapente.suitability USING GIST (ST_ConvexHull(rast));
 
 -- ---------------------------------------------------------------------------
 -- Parcelles cadastrales (plan CADGIS, sans propriétaire)

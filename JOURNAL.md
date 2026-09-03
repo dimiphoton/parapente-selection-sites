@@ -1,5 +1,13 @@
 # Journal de développement
 
+## 2026-09-03 — Overlay pondéré
+
+- Score au pixel 0–1 : pente 50 % (plateau 16–28°), aspect 30 %
+  (préféré SW, plancher NE 0,25), occupation 20 % (prairie > sol nu >
+  culture). Forêt / plat = veto. Vent du jour hors de ce score.
+- `docs/overlay.md` + table raster `parapente.suitability`. Pas de
+  LiDAR réel : tests sur tuile synthétique.
+
 ## 2026-09-03 — ETL Python (intérim)
 
 - Alternative à FME (licence Form). `etl.py` : GeoJSON cadastre,

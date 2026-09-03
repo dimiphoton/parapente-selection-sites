@@ -7,12 +7,11 @@ paginate: true
 <!-- _class: cover -->
 <!-- _paginate: false -->
 
-<!-- Photo: pictures/presentations/photos/hero.png -->
-<!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
+![bg brightness:0.40](../../pictures/presentations/photos/hero.png)
 
-# Which Ardennes parcels combine
-# slope, aspect and a three-day
-# wind forecast?
+# How do we recode slope, aspect
+# and WALOUS into a 0–1 score
+# without fitting a model?
 
 Geospatial · Outdoor recreation · Python / GeoPandas / PostGIS / Streamlit / FME
 
@@ -22,62 +21,65 @@ Ardennes · LiDAR DEM 2021–2022 · cadastral parcel
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/motivation.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [Why measure
-# this.]
+# Weighted overlay is
+# the founding GIS
+# exercise.
 
-[Quantified stake if we have it. Cost of a bad call.]
+Without justified weights it is just a pretty map.
 
-**[What is missing today to decide.]**
+**Here a rejected pixel must be explainable in one sentence.**
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/hero.png) -->
+![bg left:46%](../../pictures/presentations/photos/hero.png)
 
-# [Who consumes
-# the output.]
+# Who consumes
+# the raster.
 
-[Agency / regulator]. [Operator / insurer / consultancy].
+The club, later the webapp, and a recruiter who opens the repo.
 
-The deliverable: [indicator, view, recommendation], not a report.
+This step's deliverable: a 0–1 raster, not yet a capakey list.
 
 ---
 
 <!-- _class: full -->
 
-<!-- ![bg brightness:0.38](../../pictures/presentations/photos/physique.png) -->
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# [Mechanism.]
+# Horn gives slope.
+# Downslope gives aspect.
 
-[Physics or process: rain → waterlogged → yield, load curve, Espec…]
-
----
-
-<!-- _class: split -->
-
-<!-- ![bg left:46%](../../pictures/presentations/photos/motivation.png) -->
-
-# [Data-processing
-# logic.]
-
-Sources. Grain. Units. Joins.
-
-What we aggregate, what we refuse to mix.
+Takeoff turns a run into lift on grass. Forest blocks it. A flat cell has no aspect.
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/physique.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [What we isolate.]
+# Three grids,
+# one metre, EPSG:3812.
 
-Strip out [confounder]. What remains is [target].
+Slope and aspect from the DEM. WALOUS already in Lambert 2008.
 
-Not [what we are not claiming].
+We recode and weight. We do not zonal-stat to parcels yet.
+
+---
+
+<!-- _class: split -->
+
+![bg left:46%](../../pictures/presentations/photos/physique.png)
+
+# Terrain is isolated
+# from today's wind.
+
+Climatological aspect (SW) weighs 30 %. The 3-day Open-Meteo wind is a filter **afterwards**.
+
+Not both in the same sum.
 
 ---
 
@@ -85,54 +87,70 @@ Not [what we are not claiming].
 
 # Scope.
 
-We do [orientation: diagnosis / identifiability / decision].
+We score suitability at the pixel, Ardennes, one CRS.
 
-We are not [2050 scenario / flashy model / a map with no GIS].
+We are not a fitted model, not a map of certified sites, and not a nominative table.
 
 ---
 
 <!-- _class: chart -->
 
-[Baseline / trend / raw data — sentence headline.]
+Usable slope is a window: 0 outside 10–42°, a plateau at 1 between 16° and 28°.
 
-<!-- ![w:920](../../pictures/presentations/baseline-en.png) -->
+![w:920](../../pictures/presentations/score-pente-en.png)
 
 ---
 
 <!-- _class: full -->
 
-<!-- ![bg brightness:0.38](../../pictures/presentations/photos/physique.png) -->
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# [Main result]
-# [metric + n]
+# 0.50 slope + 0.30 aspect
+# + 0.20 land cover. Else veto.
+
+Forest, water, artificial ground, or slope outside the window: the pixel is 0.
 
 ---
 
 <!-- _class: chart -->
 
-[Chart for *this* technical story — not necessarily the recruiter one.]
+South-west aspect scores 1. North-east stays at 0.25 — easterly days do happen.
 
-<!-- ![w:980](../../pictures/presentations/key-chart-en.png) -->
+![w:920](../../pictures/presentations/score-aspect-en.png)
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:40%](../../pictures/presentations/photos/hero.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [Robustness.]
+# WALOUS is not
+# a weight like the others.
 
-[Spatial / years / n]. [What is not independent.]
+Grassland 1, bare soil 0.80, crops 0.55.
 
-<!-- ![w:480](../../pictures/presentations/map-or-robustness-en.png) -->
+Everything else is a veto, not a soft penalty.
+
+---
+
+<!-- _class: split -->
+
+![bg left:40%](../../pictures/presentations/photos/hero.png)
+
+# Robustness
+# on a synthetic tile.
+
+Same shape, edge NaNs kept, steep forest at 0, NE still above 0.5.
+
+No LiDAR in the repo: the volume stays off git.
 
 ---
 
 <!-- _class: chart -->
 
-Why not [flashy model]? n = […]. [Chosen model + validation.]
+Why not a classifier? There is no labelled takeoff sample. An overlay can be read and challenged.
 
-<!-- ![w:640](../../pictures/presentations/validation-en.png) -->
+![w:880](../../pictures/presentations/poids-overlay-en.png)
 
 ---
 
@@ -140,24 +158,24 @@ Why not [flashy model]? n = […]. [Chosen model + validation.]
 
 # Where it breaks.
 
-[Limit 1.]
+No field validation.
 
-[Limit 2.]
+A 1 m WALOUS cell is not a takeoff strip.
 
-[Limit 3. Correlation ≠ causation if relevant.]
+Climatological SW is not Saturday's wind.
 
 ---
 
 <!-- _class: cta -->
 
-<!-- ![bg brightness:0.30](../../pictures/presentations/photos/cta.png) -->
+![bg brightness:0.30](../../pictures/presentations/photos/cta.png)
 
 # Reproduce.
 
-[Explore online](../explore-en.html)
+[Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-`python -m mon_projet run`
+`pytest`
 
-`python -m mon_projet dashboard`
+`python -m sites_parapente.cli --overlay`
 
-<!-- Stack badges here, not on the recruiter cover. -->
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-spatial-336791?logo=postgresql&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-webapp-FF4B4B?logo=streamlit&logoColor=white)
