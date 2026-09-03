@@ -13,9 +13,10 @@
   - Périmètre v1 : Ardenne (provinces de Namur, Luxembourg, Liège),
     pas la Wallonie entière.
   - CRS unique : Lambert 2008, EPSG:3812.
-  - ETL d'intégration (MNT, occupation du sol, cadastre) dans **FME**
-    — pas un contournement Python. FME sera installé en cours de
-    route ; l'autopilot s'arrête à cette étape s'il manque.
+  - ETL d'intégration : **Python** (intérim) — GeoJSON cadastre +
+    ``raster2pgsql``. **FME reporté** (licence Form trop lourde pour
+    maintenant) ; le `.fmw` reviendra plus tard sur le même schéma
+    PostGIS.
   - Calculs de pente / aspect : GDAL / GeoPandas à partir du MNT
     LiDAR SPW 2021–2022.
   - Occupation du sol : WALOUS (SPW) en priorité ; Corine seulement

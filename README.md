@@ -68,11 +68,13 @@ TBD as the pipeline lands. Skeleton:
 pip install -e ".[dev]"
 pytest
 python -m sites_parapente.cli --crs
+python -m sites_parapente.cli --etl-parcels data/processed/cadastre.geojson
+python -m sites_parapente.cli --etl-raster pente.tif parapente.pente
 # PostGIS (local): psql -d <db> -f sql/schema_postgis.sql
 ```
 
-FME Form is required for the integration workspace (`etl/workspace.fmw`).
-PostGIS and QGIS 3.x are expected locally.
+FME Form is **deferred** (licence). Python ETL is the current path.
+PostGIS, `raster2pgsql` and QGIS 3.x are expected locally.
 
 ## Repo structure
 
@@ -81,7 +83,7 @@ src/sites_parapente/   # package (CRS EPSG:3812 in config.py)
 data/raw/              # gitignored downloads
 data/processed/        # regenerable layers
 data/local/            # optional nominative join, gitignored
-etl/                   # FME workspace (later)
+etl/                   # FME workspace later ; Python ETL is in src/
 qgis/                  # QGIS project, relative paths
 sql/schema_postgis.sql # schema parapente (EPSG:3812, no owner names)
 webapp/                # Streamlit app (later)

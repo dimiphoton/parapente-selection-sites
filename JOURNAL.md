@@ -1,5 +1,11 @@
 # Journal de développement
 
+## 2026-09-03 — ETL Python (intérim)
+
+- Alternative à FME (licence Form). `etl.py` : GeoJSON cadastre,
+  filtre Ardenne, suppression des champs propriétaires, commandes
+  raster2pgsql. FME reste une case ouverte.
+
 ## 2026-08-30 — Schéma PostGIS
 
 - `sql/schema_postgis.sql` : schema `parapente`, rasters + parcelles
