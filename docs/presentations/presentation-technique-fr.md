@@ -7,12 +7,11 @@ paginate: true
 <!-- _class: cover -->
 <!-- _paginate: false -->
 
-<!-- Photo : pictures/presentations/photos/hero.png -->
-<!-- ![bg brightness:0.40](../../pictures/presentations/photos/hero.png) -->
+![bg brightness:0.40](../../pictures/presentations/photos/hero.png)
 
-# Quelles parcelles ardennaises
-# réunissent pente, exposition
-# et vent prévu à trois jours ?
+# Comment recoder pente, aspect
+# et WALOUS en un score 0–1
+# sans apprendre un modèle ?
 
 Géospatial · Loisirs outdoor · Python / GeoPandas / PostGIS / Streamlit / FME
 
@@ -22,62 +21,65 @@ Ardenne · MNT LiDAR 2021–2022 · parcelle cadastrale
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/motivation.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [Pourquoi
-# mesurer ça.]
+# L'overlay pondéré
+# est l'exercice
+# fondateur du GIS.
 
-[Enjeu chiffré si on l'a. Coût d'une mauvaise décision.]
+Sans poids justifiés, ce n'est qu'une carte jolie.
 
-**[Ce qui manque aujourd'hui pour trancher.]**
+**Ici : un pixel inapte doit pouvoir s'expliquer en une phrase.**
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/hero.png) -->
+![bg left:46%](../../pictures/presentations/photos/hero.png)
 
-# [Qui consomme
-# le résultat.]
+# Qui consomme
+# le raster.
 
-[Agence / régulateur]. [Opérateur / assureur / bureau d'études].
+Le club, plus tard la webapp, et un recruteur qui ouvre le dépôt.
 
-Le livrable : [indicateur, vue, reco], pas un rapport.
+Le livrable de cette étape : un raster 0–1, pas encore une liste de capakey.
 
 ---
 
 <!-- _class: full -->
 
-<!-- ![bg brightness:0.38](../../pictures/presentations/photos/physique.png) -->
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# [Mécanisme.]
+# Horn donne la pente.
+# L'aval donne l'aspect.
 
-[Physique ou processus : pluie → saturé → rendement, courbe de charge, Espec…]
-
----
-
-<!-- _class: split -->
-
-<!-- ![bg left:46%](../../pictures/presentations/photos/motivation.png) -->
-
-# [Logique du
-# traitement.]
-
-Sources. Grain. Unités. Jointures.
-
-Ce qu'on agrège, ce qu'on ne mélange pas.
+Décoller, c'est convertir une course en portance sur de l'herbe. La forêt coupe. Un versant plat n'a pas d'orientation.
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:46%](../../pictures/presentations/photos/physique.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [Ce qu'on isole.]
+# Trois grilles,
+# un mètre, EPSG:3812.
 
-On retire [confondant]. Ce qui reste, c'est [cible].
+Pente et aspect dérivés du MNT. WALOUS déjà en Lambert 2008.
 
-Pas [ce qu'on ne prétend pas].
+On recode, on pondère, on n'agrège pas encore à la parcelle.
+
+---
+
+<!-- _class: split -->
+
+![bg left:46%](../../pictures/presentations/photos/physique.png)
+
+# On isole le terrain
+# du vent du jour.
+
+L'aspect climatologique (SW) pèse 30 %. Le vent Open-Meteo à 3 jours est un filtre **après**.
+
+Pas les deux dans la même somme.
 
 ---
 
@@ -85,54 +87,70 @@ Pas [ce qu'on ne prétend pas].
 
 # Périmètre.
 
-On fait [orientation : diagnostic / identifiability / décision].
+On note un score de suitability au pixel, Ardenne, CRS unique.
 
-On n'est pas [scénario 2050 / modèle tape-à-l'œil / carte sans fond].
+On n'est pas un modèle appris, ni une carte de sites homologués, ni une table nominative.
 
 ---
 
 <!-- _class: chart -->
 
-[Baseline / tendance / donnée brute — titre-phrase.]
+La pente utile est une fenêtre : 0 hors de 10–42°, plateau à 1 entre 16° et 28°.
 
-<!-- ![w:920](../../pictures/presentations/baseline-fr.png) -->
+![w:920](../../pictures/presentations/score-pente.png)
 
 ---
 
 <!-- _class: full -->
 
-<!-- ![bg brightness:0.38](../../pictures/presentations/photos/physique.png) -->
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# [Résultat principal]
-# [métrique + n]
+# 0,50 pente + 0,30 aspect
+# + 0,20 sol. Veto sinon.
+
+Forêt, eau, artificialisé, ou pente hors plage : le pixel vaut 0.
 
 ---
 
 <!-- _class: chart -->
 
-[Graphe de *ce* récit technique — pas forcément celui du deck RH.]
+Face au sud-ouest le score d'aspect vaut 1. Face au nord-est il reste à 0,25 — les jours d'est existent.
 
-<!-- ![w:980](../../pictures/presentations/graphique-cle-fr.png) -->
+![w:920](../../pictures/presentations/score-aspect.png)
 
 ---
 
 <!-- _class: split -->
 
-<!-- ![bg left:40%](../../pictures/presentations/photos/hero.png) -->
+![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# [Robustesse.]
+# WALOUS n'est pas
+# un poids comme les autres.
 
-[Spatial / années / n]. [Ce qui n'est pas indépendant.]
+Prairie 1, sol nu 0,80, culture 0,55.
 
-<!-- ![w:480](../../pictures/presentations/carte-ou-robustesse-fr.png) -->
+Tout le reste est un veto, pas une pénalité douce.
+
+---
+
+<!-- _class: split -->
+
+![bg left:40%](../../pictures/presentations/photos/hero.png)
+
+# Robustesse
+# sur tuile synthétique.
+
+Même forme, NaN de bord conservé, forêt pentue à 0, NE encore > 0,5.
+
+Pas de LiDAR dans le dépôt : le volume reste hors git.
 
 ---
 
 <!-- _class: chart -->
 
-Pourquoi pas [modèle tape-à-l'œil] ? n = […]. [Modèle retenu + validation.]
+Pourquoi pas un classifieur ? Aucun échantillon de décollages labellisés. Un overlay se lit et se conteste.
 
-<!-- ![w:640](../../pictures/presentations/validation-fr.png) -->
+![w:880](../../pictures/presentations/poids-overlay.png)
 
 ---
 
@@ -140,24 +158,24 @@ Pourquoi pas [modèle tape-à-l'œil] ? n = […]. [Modèle retenu + validation.
 
 # Où ça casse.
 
-[Limite 1.]
+Pas de validation terrain.
 
-[Limite 2.]
+WALOUS à 1 m n'est pas une bande de décollage.
 
-[Limite 3. Corrélation ≠ cause si pertinent.]
+Le SW climatologique n'est pas le vent de samedi.
 
 ---
 
 <!-- _class: cta -->
 
-<!-- ![bg brightness:0.30](../../pictures/presentations/photos/cta.png) -->
+![bg brightness:0.30](../../pictures/presentations/photos/cta.png)
 
 # Reproduire.
 
-[Explorer en ligne](../explore-fr.html)
+[Code source](https://github.com/dimiphoton/parapente-selection-sites)
 
-`python -m mon_projet run`
+`pytest`
 
-`python -m mon_projet dashboard`
+`python -m sites_parapente.cli --overlay`
 
-<!-- Badges de stack ici, pas en slide 1 recruteur. -->
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-spatial-336791?logo=postgresql&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-webapp-FF4B4B?logo=streamlit&logoColor=white)

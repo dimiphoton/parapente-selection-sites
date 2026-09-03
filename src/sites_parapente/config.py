@@ -1,7 +1,8 @@
 """Constantes de cadrage : CRS, périmètre, chemins de données.
 
-Les poids de l'overlay arriveront à l'étape overlay. Le MNT LiDAR
-et le raster WALOUS se posent dans `data/raw/` (non commité).
+Les poids et seuils de l'overlay sont dans ``sites_parapente.overlay``
+(justification : ``docs/overlay.md``). Le MNT LiDAR et le raster
+WALOUS se posent dans `data/raw/` (non commité).
 """
 
 from pathlib import Path

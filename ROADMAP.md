@@ -24,8 +24,8 @@ modèle ; QGIS pour les cartes de restitution.
   PostGIS. Pas de GeoPandas.
 - [ ] **ETL FME** — `etl/workspace.fmw` quand la licence Form sera
   activée (même schéma PostGIS).
-- [ ] **Overlay pondéré** — seuils et poids justifiés (pente, aspect,
-  occupation), raster de suitability, documentation dans `docs/`.
+- [x] **Overlay pondéré** — seuils et poids justifiés (pente 50 %,
+  aspect 30 %, sol 20 %), veto WALOUS, raster 0–1, `docs/overlay.md`.
 - [ ] **Cadastre** — intersection des zones favorables avec CADGIS
   (capakey, commune, nature, superficie). Jointure propriétaire
   uniquement via `data/local/` (non commité).
