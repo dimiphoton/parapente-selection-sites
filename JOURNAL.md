@@ -1,5 +1,12 @@
 # Journal de développement
 
+## 2026-09-03 — Filtre vent
+
+- Open-Meteo 3 jours (vent 10 m, dominant journalier), urllib sans clé.
+  Parcelle gardée si haversine ≤ rayon (30 km défaut) et aspect face au
+  vent ± 45° (écart circulaire). Tests sur JSON-fixture, pas de réseau.
+  `docs/wind.md`.
+
 ## 2026-09-03 — Cadastre
 
 - Intersection overlay × parcelles (centres de pixels, pas GeoPandas).

@@ -42,7 +42,7 @@ Forêt, prairie trop plate, ou dos au vent : le trajet ne sert à rien.
 
 Le club cherche un décollage herbeux. Le pilote autonome, un versant face au vent. La commune, des parcelles identifiables.
 
-**La décision : quelles parcelles valent le détour.**
+**La décision : quelles parcelles valent le détour, ce week-end.**
 
 ---
 
@@ -50,11 +50,10 @@ Le club cherche un décollage herbeux. Le pilote autonome, un versant face au ve
 
 ![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-# Pour quitter le sol,
-# il faut une pente
-# d'herbe, face au vent.
+# On décolle contre le vent,
+# sur une pente qui le regarde.
 
-Trop plat, on court sans décoller. Trop d'arbres, la voile n'a pas la place. L'eau et le béton sont hors jeu.
+Le vent vient de l'ouest : il faut un versant ouest. Dos au flux, la voile n'avance pas.
 
 ---
 
@@ -62,12 +61,12 @@ Trop plat, on court sans décoller. Trop d'arbres, la voile n'a pas la place. L'
 
 ![bg left:46%](../../pictures/presentations/photos/motivation.png)
 
-# On lit un pixel
-# de un mètre.
+# Deux lectures,
+# pas un mélange.
 
-Le LiDAR donne la pente et le versant. WALOUS dit prairie, culture, forêt.
+Le LiDAR et WALOUS notent le terrain, une fois. Open-Meteo dit d'où souffle le vent, trois jours.
 
-On en fait un score de 0 à 1, pas une moyenne d'avis.
+On ne met pas la météo dans le score de pente.
 
 ---
 
@@ -75,17 +74,17 @@ On en fait un score de 0 à 1, pas une moyenne d'avis.
 
 # Ce projet, ce n'est pas.
 
-Pas un simulateur de vol, ni une autorisation de décoller.
+Pas un briefing de vol, ni une autorisation de décoller.
 
 Pas les noms des propriétaires.
 
-**Un score de terrain en Ardenne, à la parcelle.**
+**Un filtre : parcelle herbeuse, dans un rayon, face au vent prévu.**
 
 ---
 
-<!-- _class: full -->
+<!-- _class: split -->
 
-![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
+![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # On nomme la parcelle.
 # Pas la personne.
@@ -94,19 +93,22 @@ Capakey, commune, nature, score. Le propriétaire reste hors dépôt.
 
 ---
 
-<!-- _class: chart -->
+<!-- _class: full -->
 
-La pente utile tient dans une fenêtre : trop plat ou trop raide, le score tombe.
+![bg brightness:0.38](../../pictures/presentations/photos/physique.png)
 
-![w:980](../../pictures/presentations/score-pente.png)
+# Face au vent,
+# à quarante-cinq degrés près.
+
+Trois jours de prévision. Un rayon de trente kilomètres, réglable. Pas plus large : on ne retient pas le dos de la colline.
 
 ---
 
 <!-- _class: chart -->
 
-Parmi ce qui reste, la pente pèse la moitié. L'orientation, un tiers. Le type de sol ouvert, le reste.
+La pente utile tient dans une fenêtre : trop plat ou trop raide, le score tombe — avant même de regarder le vent.
 
-![w:920](../../pictures/presentations/poids-overlay.png)
+![w:980](../../pictures/presentations/score-pente.png)
 
 ---
 
@@ -115,11 +117,9 @@ Parmi ce qui reste, la pente pèse la moitié. L'orientation, un tiers. Le type 
 ![bg left:40%](../../pictures/presentations/photos/hero.png)
 
 # Ce n'est pas
-# un chiffre tiré au sort.
+# une flèche inventée.
 
-Seuils écrits, veto forêt, parcelle identifiée par son capakey.
-
-Le vent des trois jours viendra **après**, pas dans ce score.
+Open-Meteo, sans clé. Le versant vient du LiDAR. La parcelle a un capakey, pas un nom de famille.
 
 ---
 
@@ -129,11 +129,11 @@ Le vent des trois jours viendra **après**, pas dans ce score.
 
 # Lundi.
 
-**Pilote** — garder les parcelles herbeuses (score ≥ 0,20).
+**Pilote** — choisir un jour, un rayon, garder les parcelles face au vent.
 
 **Club** — travailler au capakey, jamais au nom du titulaire.
 
-Le vent du jour n'est pas encore dans la carte.
+La carte cliquable arrive avec la webapp.
 
 ---
 
@@ -145,4 +145,4 @@ Le vent du jour n'est pas encore dans la carte.
 
 [Code source](https://github.com/dimiphoton/parapente-selection-sites)
 
-Webapp géolocalisée : prochaine étape, avec le vent à 3 jours.
+`python -m sites_parapente.cli --wind`
