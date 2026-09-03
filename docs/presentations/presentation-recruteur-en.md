@@ -129,11 +129,11 @@ Open-Meteo, no API key. Aspect comes from LiDAR. The parcel has a capakey, not a
 
 # Monday.
 
-**Pilot** — pick a day and a radius, keep parcels that face the wind.
+**Pilot** — click a point, pick a day, read the parcels that face the wind.
 
 **Club** — work with the capakey, never the owner's name.
 
-The clickable map comes with the webapp.
+The map lives in the Streamlit app (`streamlit run webapp/app.py`).
 
 ---
 
@@ -145,4 +145,4 @@ The clickable map comes with the webapp.
 
 [Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-`python -m sites_parapente.cli --wind`
+`streamlit run webapp/app.py`

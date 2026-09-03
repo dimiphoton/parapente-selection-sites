@@ -40,7 +40,7 @@ A SW-biased overlay with no daily filter would leave parcels with their back to 
 # Who consumes
 # the filter.
 
-The pilot (where to go on Saturday). Later the Streamlit app. The club, by capakey.
+The pilot (where to go on Saturday): Streamlit app, one click, one day. The club, by capakey.
 
 Open-Meteo needs no key. Nothing nominative leaves the pipe.
 
@@ -66,7 +66,7 @@ Same 0° = north. Facing the wind ⇔ aspect ≈ meteorological direction. Takeo
 
 Open-Meteo: hourly + daily dominant, `forecast_days=3`, 10 m wind, Brussels timezone.
 
-Distance: WGS84 haversine. No pyproj. `ST_Transform` waits for PostGIS / the webapp.
+Distance: WGS84 haversine. No pyproj. The app serves a WGS84 demo JSON; `ST_Transform` stays with PostGIS.
 
 ---
 
@@ -192,7 +192,7 @@ Open-Meteo is not a TAF.
 
 [Source code](https://github.com/dimiphoton/parapente-selection-sites)
 
-`pytest tests/test_wind.py`
+`streamlit run webapp/app.py`
 
 `python -m sites_parapente.cli --forecast 50.22 5.34`
 

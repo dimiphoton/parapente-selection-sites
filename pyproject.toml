@@ -9,6 +9,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+webapp = [
+    "streamlit>=1.36",
+    "folium>=0.17",
+    "streamlit-folium>=0.22",
+]
 
 [project.scripts]
 sites-parapente = "sites_parapente.cli:main"

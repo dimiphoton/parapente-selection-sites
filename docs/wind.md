@@ -43,8 +43,9 @@ Un vent trop faible ou trop fort reste un jugement pilote.
 5. Tri par distance. Aucun champ propriétaire n'est recopié.
 
 Les parcelles doivent déjà porter `lat`, `lon` (WGS84) et
-`aspect_p50_deg`. Le passage Lambert 2008 → WGS84 est un
-`ST_Transform` PostGIS, prévu avec la webapp — pas de pyproj ici.
+`aspect_p50_deg`. La webapp Streamlit sert un JSON démo déjà en GPS.
+Le passage Lambert 2008 → WGS84 pour un export CADGIS réel reste un
+`ST_Transform` PostGIS — pas de pyproj dans le package.
 
 ## Limites
 
